@@ -18,8 +18,8 @@
                         <td>{{ $item->contact }}</td>
                         <td>
                             <a href="{{ route('contact_details', $item->id) }}" class="btn btn-sm bg-dark text-white">Datails</a>
-                            <a href="editar_noticia/{{$item->id}}" class="btn btn-sm bg-dark text-white">Edit</a>
-                            <a href="eliminar_noticia/{{$item->id}}"  class="btn btn-sm bg-dark text-white ">Delete</a>
+                            <a href="edit/{{$item->id}}" class="btn btn-sm bg-dark text-white">Edit</a>
+                            <a href="delete/{{$item->id}}"  class="btn btn-sm bg-dark text-white ">Delete</a>
                         </td>
                     </tr>
             @endforeach

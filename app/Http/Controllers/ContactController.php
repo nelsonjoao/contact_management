@@ -79,6 +79,15 @@ class ContactController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        if($id === null){
+            return redirect()->route('home');
+        }
+
+        // load contact
+        $note = Contact::find($id);
+        $note->delete();
+
+        // redirect to home
+        return redirect()->route('home');
     }
 }

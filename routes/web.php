@@ -28,6 +28,8 @@ Route::get('/login',[AuthController::class, 'login'])->name('login');
 
 Route::get('/create',[ContactController::class, 'create'])->name('create');
 Route::post('/store',[ContactController::class, 'store'])->name('store');
+ Route::get('/delete/{id}', [ContactController::class, 'destroy'])->name('delete');
+
 
 Route::middleware('auth')->group(function(){
 Route::get('/contact_details/{id}',[ContactController::class, 'show'])->name('contact_details');
