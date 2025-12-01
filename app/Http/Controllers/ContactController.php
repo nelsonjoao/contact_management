@@ -63,15 +63,54 @@ class ContactController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        if($id === null){
+            return redirect()->route('home');
+        }
+        
+        // load contact
+        $contact = Contact::find($id);
+
+        // show edit contact view
+        return view('edit', ['contact' => $contact]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        //
+         // validate request
+        $request->validate(
+            // rules
+            [
+                'name' => 'required|min:3|max:50',
+                'email' => 'required|min:3|max:30',
+                'contact' => 'required|min:3|max:9'
+            ]
+        );
+
+        // check if contact_id exists
+        if($request->contact_id == null){
+            return redirect()->route('home');
+        }
+
+        $id = $request->contact_id;
+
+        if($id === null){
+            return redirect()->route('home');
+        }
+
+        // load contact
+        $contact = Contact::find($id);
+
+        // update contact
+        $contact->name = $request->name;
+        $contact->email = $request->email;
+        $contact->contact = $request->contact;
+        $contact->save();
+
+        // redirect to home
+        return redirect()->route('home');
     }
 
     /**
