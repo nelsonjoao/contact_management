@@ -7,20 +7,24 @@
                 <div class="card p-5">
                     <p class="display-6 text-center">LOGIN</p>
 
-                    <form action="«" method="post">
+                    <form action="{{ route('authenticate') }}" method="post">
 
                         @csrf
 
                         <div class="mb-3">
                             <label for="username" class="form-label">Usuário</label>
-                            <input type="text" class="form-control" id="username" name="username">
-                            
+                            <input type="text" class="form-control" id="username" name="username" {{ old('username') }}>
+                            @error('username')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="mb-3">
                             <label for="password" class="form-label">Senha</label>
                             <input type="password" class="form-control" id="password" name="password">
-                           
+                            @error('password')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="row mt-4">
@@ -32,7 +36,11 @@
 
                     </form>
 
-                   
+                      @if(session('invalid_login'))
+                        <div class="alert alert-danger text-center mt-4">
+                            {{ session('invalid_login') }}
+                        </div>
+                    @endif
 
                     
 

@@ -16,12 +16,15 @@ use Spatie\FlareClient\View;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::middleware('guest')->group(function(){
 
 Route::get('/', [ContactController::class, 'index'])->name('home');
+
+Route::middleware('guest')->group(function(){
+
 Route::get('/login',[AuthController::class, 'login'])->name('login');
+ Route::post('/login', [AuthController::class, 'authenticate'])->name('authenticate');
 });
 
 Route::middleware('auth')->group(function(){
-
+Route::get('/contact_details/{id}',[ContactController::class, 'show'])->name('contact_details');
 });
