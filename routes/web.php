@@ -27,4 +27,5 @@ Route::get('/login',[AuthController::class, 'login'])->name('login');
 
 Route::middleware('auth')->group(function(){
 Route::get('/contact_details/{id}',[ContactController::class, 'show'])->name('contact_details');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });

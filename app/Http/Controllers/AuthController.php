@@ -16,6 +16,7 @@ class AuthController extends Controller
 
      public function authenticate(Request $request): RedirectResponse
     {
+        
         // form validation
         $credentials = $request->validate(
             [
@@ -23,37 +24,45 @@ class AuthController extends Controller
                 'password' => 'required|min:8|max:32|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/'
             ],
             [
-                'email.required' => 'O Email é obrigatório',
-                'password.required' => 'A senha é obrigatória.',
-                'password.min' => 'A senha deve conter no mínimo :min caracteres.',
-                'password.max' => 'A senha deve conter no máximo :max caracteres.',
-                'password.regex' => 'A senha deve conter pelo menos uma letra maiúscula, uma letra minúscula e um número.',
+                'email.required' => 'Email is required',
+                'password.required' => 'Password is required',
+                'password.min' => 'The password must contain a min of :min caracters.',
+                'password.max' => 'The password must contain a maximum of :max caracters.',
+                'password.regex' => 'The password must contain at least one uppercase letter, one lowercase letter, and one number.',
             ]
         );
 
-        // verificar se o user existe
-        $user = User::where('email', $credentials['email'])->where('active', true)->first();
+       
+        $user = User::where('email', $credentials['email'])->first();
 
-        // verifica se o user existe
+      
         if(!$user){
             return back()->withInput()->with([
                 'invalid_login' => 'Login inválido.'
             ]);
         }
 
-        // verificar se a password é valida
+       
         if(!password_verify($credentials['password'], $user->password)){
             return back()->withInput()->with([
-                'invalid_login' => 'Login inválidoOO.'
+                'invalid_login' => 'Login inválido.'
             ]);
         }
 
-        // login propriamente dito!
+      
         $request->session()->regenerate();
         Auth::login($user);
-
-        // redirecionar
+        
+      
         return redirect()->intended(route('home'));
+    }
+
+    
+    public function logout(): RedirectResponse
+    {
+        // logout
+        Auth::logout();
+        return redirect()->route('login');
     }
 
 }
