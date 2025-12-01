@@ -8,7 +8,7 @@
 	<div class="row">
 		<div class="col-sm-12 pt-2">
 				<a href="{{ route('home') }}" class="btn btn-dark"> Home </a>
-				<a href="" class="btn btn-dark"> New Contact </a>
+				<a href="{{ route('create') }}" class="btn btn-dark"> New Contact </a>
 				<a href="{{ route('logout') }}" class="btn btn-dark"> Logout </a>
 
 		</div>

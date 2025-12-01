@@ -21,7 +21,7 @@ class ContactController extends Controller
      */
     public function create()
     {
-        //
+         return view('create');
     }
 
     /**
@@ -29,7 +29,25 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       // validate request
+        $request->validate(
+            // rules
+            [
+                'name' => 'required|min:3|max:50',
+                'email' => 'required|min:3|max:30',
+                'contact' => 'required|min:3|max:9'
+            ]
+        );
+
+        // create new contact
+        $contact = new Contact();
+        $contact->name = $request->name;
+        $contact->email = $request->email;
+        $contact->contact = $request->contact;
+        $contact->save();
+
+        // redirect to home
+        return redirect()->route('home');
     }
 
     /**

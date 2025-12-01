@@ -25,7 +25,11 @@ Route::get('/login',[AuthController::class, 'login'])->name('login');
  Route::post('/login', [AuthController::class, 'authenticate'])->name('authenticate');
 });
 
+
+Route::get('/create',[ContactController::class, 'create'])->name('create');
+Route::post('/store',[ContactController::class, 'store'])->name('store');
+
 Route::middleware('auth')->group(function(){
 Route::get('/contact_details/{id}',[ContactController::class, 'show'])->name('contact_details');
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
