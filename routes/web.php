@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ContactController;
@@ -15,9 +16,12 @@ use Spatie\FlareClient\View;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::middleware('guest')->group(function(){
 
 Route::get('/', [ContactController::class, 'index'])->name('home');
+Route::get('/login',[AuthController::class, 'login'])->name('login');
+});
 
-Route::get('/login',function() {
- return view('auth.login');
+Route::middleware('auth')->group(function(){
+
 });
