@@ -13,8 +13,8 @@
 
                         <div class="mb-3">
                             <label for="username" class="form-label">Usuário</label>
-                            <input type="text" class="form-control" id="username" name="username" {{ old('username') }}>
-                            @error('username')
+                            <input type="text" class="form-control" id="email" name="email" {{ old('email') }}>
+                            @error('email')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>

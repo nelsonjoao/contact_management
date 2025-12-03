@@ -1,14 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="card" style="width: 18rem;">
-  <div class="card-header">
-    Featured
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">An item</li>
-    <li class="list-group-item">A second item</li>
-    <li class="list-group-item">A third item</li>
-  </ul>
-</div>
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        Contact details
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Name: {{ $contact->name }}</li>
+                        <li class="list-group-item">Email: {{ $contact->email }}</li>
+                        <li class="list-group-item">Contact: {{ $contact->contact }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

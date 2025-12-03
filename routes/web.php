@@ -30,13 +30,12 @@ Route::get('/login',[AuthController::class, 'login'])->name('login');
 Route::middleware('auth')->group(function(){
 
 Route::get('/contact_details/{id}',[ContactController::class, 'show'])->name('contact_details');
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/create',[ContactController::class, 'create'])->name('create');
 Route::post('/store',[ContactController::class, 'store'])->name('store');
- Route::get('/delete/{id}', [ContactController::class, 'destroy'])->name('delete');
-
- Route::get('/edit/{id}',[ContactController::class, 'edit'])->name('edit');
- Route::post('/update',[ContactController::class, 'update'])->name('update');
+Route::get('/delete/{id}', [ContactController::class, 'destroy'])->name('delete');
+Route::get('/edit/{id}',[ContactController::class, 'edit'])->name('edit');
+Route::post('/update',[ContactController::class, 'update'])->name('update');
  
 });

@@ -38,14 +38,14 @@ class AuthController extends Controller
       
         if(!$user){
             return back()->withInput()->with([
-                'invalid_login' => 'Login inválido.'
+                'invalid_login' => 'Invalid Login.'
             ]);
         }
 
        
         if(!password_verify($credentials['password'], $user->password)){
             return back()->withInput()->with([
-                'invalid_login' => 'Login inválido.'
+                'invalid_login' => 'Inválid Login.'
             ]);
         }
 

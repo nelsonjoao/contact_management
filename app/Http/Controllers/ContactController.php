@@ -55,7 +55,8 @@ class ContactController extends Controller
      */
     public function show(string $id)
     {
-        return view('details');
+        $contact = Contact::find($id);
+        return view('details', compact('contact'));
     }
 
     /**
